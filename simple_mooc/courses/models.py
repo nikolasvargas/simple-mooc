@@ -1,6 +1,20 @@
 from django.db import models
 
 
+class CourseManager(models.Manager):
+    def search(self, query):
+        return super().get_queryset().filter(
+            models.Q(name__icontains=query) |
+            models.Q(description__icontains=query)
+        )
+
+    def __repr__(self):
+        pass
+
+    def __str__(self):
+        pass
+
+
 class Course(models.Model):
     name = models.CharField('courses name', max_length=30)
     slug = models.SlugField('shortcut')
@@ -14,3 +28,7 @@ class Course(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField('last modified', auto_now=True)
+    objects = CourseManager()
+
+    def __str__(self):
+        return self.name
