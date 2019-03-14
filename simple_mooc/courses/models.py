@@ -16,7 +16,7 @@ class CourseManager(models.Manager):
 
 
 class Course(models.Model):
-    name = models.CharField('courses name', max_length=30)
+    name = models.CharField('courses name', max_length=60)
     slug = models.SlugField('shortcut')
     description = models.TextField('description', blank=True)
     start_date = models.DateField('start date', null=True, blank=True)
