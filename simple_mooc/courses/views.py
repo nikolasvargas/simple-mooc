@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from courses.models import Course
 
 def index(request):
-    return render(request, 'courses.html')
+    context = {}
+    context['courses']= Course.objects.all()
+    return render(request, 'courses.html', context)
