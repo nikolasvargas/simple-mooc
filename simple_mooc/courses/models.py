@@ -8,12 +8,6 @@ class CourseManager(models.Manager):
             models.Q(description__icontains=query)
         )
 
-    def __repr__(self):
-        pass
-
-    def __str__(self):
-        pass
-
 
 class Course(models.Model):
     name = models.CharField('courses name', max_length=60)
