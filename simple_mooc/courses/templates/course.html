@@ -1,4 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-  {{course.name}}
+  <div class="pure-g-r content-ribbon">
+    <div class="pure-u-1">
+      <div class="l-box">
+        <p>{{ course.name }}</p>
+        <p>{{ course.about }}</p>
+      </div>
+    </div>
+  </div>
 {% endblock %}
