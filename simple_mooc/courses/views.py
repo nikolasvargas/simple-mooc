@@ -9,13 +9,13 @@ def index(request):
     return render(
         request=request,
         template_name='index.html',
-        content=context
+        context=context
         )
 
 
 def course(request, slug):
     context = {}
-    context['course'] = Course.objects.get(slug=slug)
+    context['courses'] = Course.objects.get(slug=slug)
     return render(
         request=request,
         template_name='course.html',
