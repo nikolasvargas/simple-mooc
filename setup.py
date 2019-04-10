@@ -32,6 +32,6 @@ setup(
     author_email='vargasnikolass@gmail.com',
     license='MIT',
     packages=find_packages(),
-    install_requires=['Django', 'flake8', 'Pillow'],
+    install_requires=['Django', 'flake8', 'Pillow', 'faker'],
     long_description=read('README.md')
 )
