@@ -2,7 +2,9 @@ from django.test import TestCase
 from courses.models import Course
 from faker import Faker
 
+
 FAKE = Faker()
+
 
 class CourseModelTestCase(TestCase):
 
