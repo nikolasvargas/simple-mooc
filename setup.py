@@ -5,6 +5,7 @@ import sys
 import os
 import distutils.cmd
 from setuptools import find_packages, setup
+from pathlib import Path
 
 CURRENT_PYTHON_VERSION = sys.version_info[:2]
 REQUIRED_PYTHON_VERSION = (3, 5)
@@ -47,13 +48,18 @@ def read(fname):
         return f.read()
 
 
+def read_license():
+    for line in Path('LICENSE').read_text().splitlines():
+        return line
+
+
 setup(
     name='Simple MOOC',
     version='1',
     python_requires='>={}.{}'.format(*REQUIRED_PYTHON_VERSION),
     author="Níkolas Vargas",
     author_email='vargasnikolass@gmail.com',
-    license='MIT',
+    license=read_license(),
     packages=find_packages(),
     install_requires=[
         read('requirements.txt')
