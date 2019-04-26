@@ -5,7 +5,6 @@ import sys
 import os
 import distutils.cmd
 from setuptools import find_packages, setup
-from pathlib import Path
 
 CURRENT_PYTHON_VERSION = sys.version_info[:2]
 REQUIRED_PYTHON_VERSION = (3, 5)
@@ -38,7 +37,15 @@ class PrecommitCommand(distutils.cmd.Command):
         pass
 
     def run(self):
+        self.install_development_packages('requirements-dev.txt')
         os.system('pre-commit install')
+
+    def install_development_packages(self, name):
+        try:
+            import subprocess
+            subprocess.call(['pip', 'install', '-r', name])
+        except ImportError:
+            print("Módulo não encontrado")
 
 
 def read(fname):
@@ -48,18 +55,13 @@ def read(fname):
         return f.read()
 
 
-def read_license():
-    for line in Path('LICENSE').read_text().splitlines():
-        return line
-
-
 setup(
     name='Simple MOOC',
     version='1',
     python_requires='>={}.{}'.format(*REQUIRED_PYTHON_VERSION),
     author="Níkolas Vargas",
     author_email='vargasnikolass@gmail.com',
-    license=read_license(),
+    license='MIT',
     packages=find_packages(),
     install_requires=[
         read('requirements.txt')
